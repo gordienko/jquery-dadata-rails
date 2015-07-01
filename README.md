@@ -25,6 +25,30 @@ Add this line to `app/assets/javascripts/application.js`:
 Usage
 -----
 
+Аdd similar code to your view, for example `app/views/companies/_form.html.haml`:
+
+    = simple_form_for(@company) do |f|
+      = f.error_notification
+      = f.input :name
+      = f.input :address
+      = f.input :postal_code
+      = f.input :okato, :as => :hidden
+      = f.input :oktmo, :as => :hidden
+
+    :javascript
+      $("#company_address").suggestions({
+          serviceUrl: "https://dadata.ru/api/v2",
+          token: "#{ENV['DADATA_API_KEY']}",
+          type: "ADDRESS",
+          count: 5,
+          onSelect: function(suggestion) {
+              $('#company_postal_code').val(suggestion.data.postal_code);
+              $('#company_okato').val(suggestion.data.okato);
+              $('#company_oktmo').val(suggestion.data.oktmo);
+          }
+      });
+
+
 See the original [plugin] README and official [examples].
 
 Contributing
