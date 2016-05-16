@@ -8,7 +8,7 @@ Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'jquery-dadata-rails'
+    gem 'jquery-dadata-rails', github: 'gordienko/jquery-dadata-rails'
 
 And then execute:
 
